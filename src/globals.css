@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font: 400 1rem sans-serif;
+}
+
+html, body {
+    min-height: 100%;
+    width: 100%;
+}
+
+body, #root, html {
+    min-height: 100vh;
+}
+
+#root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
