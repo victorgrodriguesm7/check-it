@@ -2,7 +2,24 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font: 400 1rem sans-serif;
+    font: 400 1rem 'IBM Plex Sans', sans-serif;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+@media(max-width: 1080px){
+    html {
+        font-size: 93.75%;
+    }
+}
+
+@media(max-width: 720px){
+    html {
+        font-size: 87.5%;
+    }
 }
 
 html, body {
@@ -12,10 +29,33 @@ html, body {
 
 body, #root, html {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 #root {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+#root {
+    --white: #f9f9f9;
+    
+    --blue: #57B6E5;
+    --dark-blue: #6363DB;
+    --light-blue: #EBEBFC;
+
+    --orange: #E8891C;
+    --light-orange: #F5EFE9;
+
+    --green: #03AB4F;
+    --light-green: #E1F5EC;
+
+    --red: #F03434;
+    --light-red: #F5E9EC;
+    
+    --border-blue: #CECEF5;
+    --border-orange: #E5D5C5;
+    --border-red: #E5C5CF;
+    --border-green: #B8DBCB;
 }
