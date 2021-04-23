@@ -1,0 +1,80 @@
+.task {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid;
+    border-radius: 15px;
+    max-width: 450px;
+    min-width: 450px;
+    margin: 1rem 1rem 1rem 0;
+}
+
+.task .side {
+    display: flex;
+    flex: 1;
+    padding: 0.5rem 0 0.5rem 1rem;
+    height: 100%;
+}
+
+.task .left-side * {
+    margin-top: 0.25rem;
+}
+
+.task .left-side {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.task .title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 275px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task .description {
+    font-size: 0.75rem;
+    width: 275px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task .separator {
+    width: 40%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.task .onwer {
+    display: flex;
+    width: min-content;
+    height: min-content;
+    padding: 2px;
+    background: rgb(196, 196, 196, 0.3);
+    border-radius: 5px;
+}
+
+.task .right-side {
+    display: flex;
+    align-items: flex-end;
+}
+
+.task .right-side .status{
+    padding: 0.45rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: white;
+    white-space: nowrap;
+}
+
+.task .status-border {
+    padding-left: 1rem;
+    margin-left: 1rem;
+    width: 10px;
+    height: auto;
+    border-radius: 0 15px 15px 0;
+}
