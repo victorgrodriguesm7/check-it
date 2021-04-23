@@ -25,8 +25,9 @@
     border-radius: 10px;
 }
 
-.container .head {
+.container .head.register {
     display: flex;
+    justify-content: flex-start;
     margin-bottom: 2rem;
 }
 
@@ -38,6 +39,8 @@
 }
 
 .container .title {
+    display: flex;
+    justify-content: flex-start;
     padding-left: 1rem;
     font-size: 2rem;
 }

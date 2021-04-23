@@ -58,7 +58,7 @@ export default function RegisterModal() {
     return (
         <div className="overlay">
             <div className="container">
-                <div className="head">
+                <div className="head register">
                     <div className="separator"/>
                     <p className="title">Nova Tarefa</p>
                 </div>
