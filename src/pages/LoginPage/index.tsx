@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { auth } from '../../services/firebase';
 
 export default function LoginPage() {
-    const { login } = useAuth();
+    const { login, setDisplayName } = useAuth();
     const history = useHistory();
     const [ email, setEmail] = useState<string>('');
     const [ password, setPassword] = useState<string>('');
@@ -26,6 +27,7 @@ export default function LoginPage() {
 
         try {
             await login(email, password);
+            setDisplayName(auth.currentUser?.displayName);
             setLoading(false);
             history.push('/');
         } catch (error) {
