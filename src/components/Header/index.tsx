@@ -60,7 +60,7 @@ export default function Header() {
             </div>
             <div className="separator"/>
             <div className="bottom-header">
-                <button type="button" className="add-task" onClick={(e) => openRegisterModal}>
+                <button type="button" className="add-task" onClick={(e) => openRegisterModal()}>
                     <img src="icons/plus.svg" alt="Plus Icon"/>
                     <h2> Adicionar Tarefa </h2>
                 </button>
