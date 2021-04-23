@@ -1,21 +1,22 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import firebase from "firebase";
+import React, { useContext, useEffect, useState } from "react";
 import { auth } from "../services/firebase";
+import firebase from 'firebase';
 
 interface AuthProviderProps {
     children: React.ReactNode;
 }
 
-interface AuthContextData {
+interface AuthContextData{
     user: firebase.User | null;
     email: firebase.UserInfo | null;
-    displayName: firebase.UserInfo | null;
+    displayName: string | null;
+    authenticated: boolean;
     signup: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
-    login: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
+    login: (email: string, password: string ) => Promise<firebase.auth.UserCredential>;
     logout: () => Promise<void>;
 };
 
-export const AuthContext = createContext({} as AuthContextData);
+export const AuthContext =  React.createContext({} as AuthContextData);
 
 export function useAuth(){
     return useContext(AuthContext);
@@ -54,6 +55,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         user,
         email,
         displayName,
+        authenticated: user !== null,
         signup,
         login,
         logout
