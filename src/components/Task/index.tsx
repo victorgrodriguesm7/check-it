@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import './index.css';
+import { useTasks } from '../../contexts/TaskContext';
 
 interface TaskProps {
     task: ITask;
@@ -24,6 +25,7 @@ interface ITask {
 }
 
 export default function Task({ task }: TaskProps) {
+    const { openDetailsModal } = useTasks()
     let { title, description, onwer, status} = task;
 
     let color = {
@@ -54,7 +56,8 @@ export default function Task({ task }: TaskProps) {
             style={{ 
                 background: `var(${color?.backgroundColor})`,
                 borderColor: `var(${color?.borderColor})`,
-            }}>
+            }}
+            onClick={(e) => openDetailsModal(task)}>
             <div className="side">
                 <div className="left-side">
                     <h3 className="title">{ title }</h3>
