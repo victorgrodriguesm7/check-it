@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import app from '../../services/firebase';
 
 export default function SignUpPage() {
     const { signup } = useAuth();
+    const history = useHistory();
     const [ name, setName ] = useState<string>('');
     const [ email, setEmail] = useState<string>('');
     const [ password, setPassword] = useState<string>('');
@@ -27,20 +28,21 @@ export default function SignUpPage() {
 
         try {
             let response = await signup(email, password);
-            response.user?.updateProfile({
+            await response.user?.updateProfile({
                 displayName: name
             });
 
             await app.firestore().collection('Users').doc(response!.user!.uid).set({
-                id: response!.user!.uid,
                 name: name
             });
-            
+
+
+            history.push('/login');  
         } catch (error) {
-            
+            setError("Ocorreu um Erro");
+            setLoading(false);
         }
 
-        setLoading(false);
     }
 
     return (
