@@ -5,14 +5,16 @@ import PrivateRoute from './components/PrivateRoute';
 
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Switch>
-          <PrivateRoute exact path="/" children={Dashboard}/>
-          <Route path="/login" children={LoginPage}/>
+          <PrivateRoute exact path="/" component={Dashboard}/>
+          <Route path="/login" component={LoginPage}/>
+          <Route path="/signup" component={SignupPage}/>
         </Switch>
       </Router>
     </AuthProvider>
