@@ -1,0 +1,31 @@
+.combobox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.25rem;
+}
+
+.combobox input {
+    border-radius: 10px;
+    height: 1.25rem;
+    padding: 0 0.5rem;
+    border: none;
+    background: rgba(196, 196, 196, 0.3);
+    outline: 0;
+}
+
+.combobox input:focus, .combobox:hover input{
+    border-radius: 10px 10px 0px 0px;
+}
+
+.combobox .results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f4f4;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(1.25rem);
+    border-radius: 0px 0px 10px 10px;
+}
