@@ -1,6 +1,8 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import firebase from 'firebase';
 import app from '../services/firebase';
+import RegisterModal from '../components/RegisterModal';
+import DetailsModal from '../components/DetailsModal';
 
 interface TaskProviderProps {
     children: React.ReactNode;
@@ -10,7 +12,13 @@ interface TaskContextData {
     tasks: Array<Task>;
     users: Array<User>;
     filter: Filter;
+    hasFilter: boolean;
+    deleteFilter: boolean;
     changeFilter: (filter: Filter) => void;
+    clearFilter: (value: boolean) => void;
+    openRegisterModal: () => void;
+    closeModal: () => void;
+    openDetailsModal: (task: Task) => void;
 }
 
 interface Filter {
@@ -50,11 +58,32 @@ export default function TaskProvider({ children }: TaskProviderProps) {
     const [ tasks, setTasks ] = useState(new Array<Task>());
     const [ users, setUsers ] = useState(new Array<User>());
     const [ filter, setFilter ] = useState({} as Filter);
+    const [ hasFilter, setHasFilter] = useState(false);
+    const [ deleteFilter, setDeleteFilter ] = useState(false);
     const [ loading, setLoading ] = useState(true);
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
+    const [ modal, setModal] = useState<JSX.Element | null>(null);
     const firestore = app.firestore();
 
+    function clearFilter(value: boolean){
+        if (value){
+            setFilter({} as Filter);
+            setHasFilter(false);
+        }
+
+        setDeleteFilter(value);
+    }
+    
     function changeFilter({ onwer, status} : Filter){
-        setFilter((prevState) => ({ ...prevState, ...{ onwer, status}}));
+        if (status !== null){
+            setFilter({...filter, status});
+        }
+        
+        if(onwer !== null){
+            setFilter({ ...filter, onwer});
+        }
+
+        setHasFilter(true);
     }
 
     const loadTasks = useCallback(
@@ -101,16 +130,37 @@ export default function TaskProvider({ children }: TaskProviderProps) {
         });
     }, [loadTasks, loadUsers]);
 
+    function closeModal(){
+        setIsModalOpen(false);
+        setModal(null);
+    }
+    function openRegisterModal(){
+        setModal(<RegisterModal/>)
+        setIsModalOpen(true);
+    }
+
+    function openDetailsModal(task: Task){
+        setModal(<DetailsModal task={task}/>)
+        setIsModalOpen(true);
+    }
+
     let value = {
         tasks,
         users,
         filter,
+        hasFilter,
+        deleteFilter,
         changeFilter,
+        clearFilter,
+        openRegisterModal,
+        closeModal,
+        openDetailsModal
     } as TaskContextData
 
     return (
         <TaskContext.Provider value={value}>
             { !loading && children }
+            { !loading && isModalOpen && modal}
         </TaskContext.Provider>
     )
 }
