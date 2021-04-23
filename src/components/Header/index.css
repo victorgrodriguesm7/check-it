@@ -33,6 +33,13 @@
     font-weight: 600;
 }
 
+.header .top-header .right-side {
+    display: flex;
+}
+.header .top-header .right-side img {
+    margin-left: 1rem;
+    cursor: pointer;
+}
 .header .separator {
     margin: 2% 0;
     width: 100%;
@@ -118,6 +125,11 @@
     font-size: 0.75rem;
     color: white;
     width: 100%;
+    transition: all 0.2s;
+}
+
+.filter-options .by-status .status-container .status:not(.active):hover {
+    filter: brightness(90%);
 }
 
 /* Pendente */
@@ -126,18 +138,36 @@
     border: 1px solid var(--border-blue);
     border-radius: 5px;
 }
+
+.filter-options .by-status .status-container .status.active:nth-child(1) {
+    background: var(--light-blue);
+    color: var(--dark-blue); 
+}
+
 /* Em Andamento */
 .filter-options .by-status .status-container .status:nth-child(2){
     background: var(--orange);
     border: 1px solid var(--border-orange);
     border-radius: 5px;
 }
+
+.filter-options .by-status .status-container .status.active:nth-child(2){
+    background: var(--light-orange);
+    color: var(--orange);
+}
+
 /* Finalizado */
 .filter-options .by-status .status-container .status:nth-child(3){
     background: var(--green);
     border: 1px solid var(--border-green);
     border-radius: 5px;
 }
+
+.filter-options .by-status .status-container .status.active:nth-child(3){
+    background: var(--light-green);
+    color: var(--green);
+}
+
 /* Cancelado */
 .filter-options .by-status .status-container .status:nth-child(4){
     background: var(--red);
@@ -145,6 +175,10 @@
     border-radius: 5px;
 }
 
+.filter-options .by-status .status-container .status.active:nth-child(4){
+    background: var(--light-red);
+    color: var(--red);
+}
 
 /* Select */
 
