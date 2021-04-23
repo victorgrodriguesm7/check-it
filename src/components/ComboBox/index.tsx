@@ -2,11 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTasks } from '../../contexts/TaskContext'
 import './index.css';
 
-interface Filter {
-    status: Array<"Pendente" | "Em Andamento" | "Finalizado" | "Cancelado"> | null;
-    onwer: User | null;
-}
-
 interface User {
     id: string;
     name: string;
@@ -15,10 +10,10 @@ interface User {
 export default function ComboBox() {
     const maxOptions = 5;
     const inputRef = useRef<HTMLInputElement>(null);
+    const { deleteFilter, clearFilter } = useTasks()
     const { users, changeFilter } = useTasks();
     const [ input, setInput ] = useState<string>('');
     const [ results, setResults ] = useState(new Array<User>());
-    const [ resultSizes, setResultsSize] = useState(-1);
     const [ onFocus, setOnFocus ] = useState(false);
 
     const autoComplete = useCallback(() => {
@@ -27,32 +22,41 @@ export default function ComboBox() {
                     &&
                 (user.name !== input)
             );
-
+            
+            if (!result.length){
+                result = users.filter((user: User) => user.name === input);
+                if (result){
+                    changeFilter({status: null, onwer: result[0]});
+                    setOnFocus(false);
+                }
+            }
             setResults(result);
-            setResultsSize(result.length)
         },
-        [input, users, setResultsSize],
+        [input, users, changeFilter],
     )
 
     useEffect(() => {
-        if (input.length){
+        if (deleteFilter && inputRef.current !== null){
+            inputRef!.current!.value = "";
+            clearFilter(false);
+        }else if (input.length){
+            setOnFocus(true);
             autoComplete();
-            if (!resultSizes){
-                let result = users.filter((user) => user.name === input)[0];
-                if (result){
-                    changeFilter({ onwer: result } as Filter);
-                }
-            }
         } else {
             setResults(users);
             autoComplete();
         }
 
-    }, [input, autoComplete, users, resultSizes, changeFilter]);
+    }, [input, autoComplete, users, deleteFilter, clearFilter]);
 
     function handleClick(user: User){
-        changeFilter({ onwer: user } as Filter);
+        changeFilter({ 
+            onwer: user,
+            status: null 
+        });
+        
         setResults([]);
+        setOnFocus(false);
         inputRef!.current!.value = user.name;
     }
 
@@ -65,7 +69,7 @@ export default function ComboBox() {
                 type="text" 
                 onChange={(e) => setInput(e.target.value)} 
                 />
-            <div className="results">
+            <ul className="results" style={{bottom: `calc(-1.25rem * ${results.length})`}}>
                 {
                     results?.map((result, index) => {
                         if (index >= maxOptions || !onFocus){
@@ -73,14 +77,18 @@ export default function ComboBox() {
                         }
 
                         return (
-                            <button 
-                                type="button" 
-                                key={result.id}
-                                onClick={(e) => handleClick(result)}> { result.name } </button>
+                            <li key={result.id}>
+                                <button 
+                                    type="button" 
+                                    key={result.id}
+                                    onClick={(e) => handleClick(result)}> 
+                                    { result.name } 
+                                </button>
+                            </li>
                         );
                     })
                 }
-            </div>
+            </ul>
         </div>
     )
 }

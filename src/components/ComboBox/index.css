@@ -25,7 +25,15 @@
     background: #f4f4f4;
     width: 100%;
     position: absolute;
-    bottom: 0;
-    transform: translateY(1.25rem);
     border-radius: 0px 0px 10px 10px;
+    list-style: none;
+}
+
+.combobox .results li,
+.combobox .results button {
+    width: 100%;
+}
+
+.combobox .results li:hover{
+    filter: brightness(95%); 
 }
