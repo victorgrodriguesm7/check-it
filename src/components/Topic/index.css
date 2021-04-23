@@ -1,0 +1,50 @@
+.topic {
+    display: flex;
+    min-height: 200px;
+    height: calc(80vh / 3);
+    padding: 1rem 2rem 0;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topic .topic-title  {
+    display: flex;
+}
+
+.topic .topic-title  h2 {
+    font-size: 2.75rem;
+}
+
+.topic .topic-title .separator {
+    width: 0.25rem;
+    border-radius: 10px;
+    height: 100%;
+    margin-right: 0.5rem;
+}
+
+.tasks-by-topic {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior: contain;
+}
+
+.tasks-by-topic::-webkit-scrollbar {
+    height: 5px;
+}
+
+.tasks-by-topic::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.tasks-by-topic::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+.tasks-by-topic::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
