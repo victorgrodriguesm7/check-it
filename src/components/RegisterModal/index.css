@@ -1,0 +1,177 @@
+.overlay {
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 550px;
+    min-width: 600px;
+    width: 40%;
+    height: 50%;
+    padding: 1rem 2rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.container .head {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.container .separator {
+    width: 0.25rem;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--dark-blue)
+}
+
+.container .title {
+    padding-left: 1rem;
+    font-size: 2rem;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.container form * {
+    margin: 0.2rem 0;
+}
+
+.container form label {
+    font-size: 1.5rem;
+}
+
+.container form .title {
+    height: 1.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    background: rgba(196, 196, 196, 0.2);
+}
+
+.container form .title::placeholder,
+.container form .description::placeholder,
+.container select{
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.container form .description {
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    outline: 0;
+    background: rgba(196, 196, 196, 0.2);
+    height: 35%;
+    resize: none;
+}
+
+.container .selections {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .selections .status-container,
+.container .selections .members-container {
+    display: flex;
+    flex: 1;
+    max-width: 46%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container select {
+    flex: 1;
+    background: rgba(196, 196, 196, 0.2); 
+    background-position: 205px center;
+    width: 95%; 
+    height: 2.5rem;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    outline: 0;
+    border: none;
+}
+
+.container select option {
+    display: flex;
+    justify-content: center;
+    padding: 2px 4px;
+    font-size: 1rem;
+    color: white;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+/* Pendente */
+.container .status-container select option:nth-child(1) {
+    background: var(--light-blue) !important;
+    color: var(--dark-blue) !important; 
+}
+
+/* Em Andamento */
+.container .status-container select option:nth-child(2){
+    background: var(--light-orange) !important;
+    color: var(--orange) !important;
+}
+
+/* Finalizado */
+
+.container .status-container select option:nth-child(3){
+    background: var(--light-green) !important;
+    color: var(--green) !important;
+}
+
+/* Cancelado */
+
+.container .status-container select option:nth-child(4){
+    background: var(--light-red) !important;
+    color: var(--red) !important;
+}
+
+/* Members */
+.container .members-container select option {
+    background:rgba(196, 196, 196, 0.2) !important;
+    color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Buttons */
+
+.container form .buttons {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container form .buttons button {
+    flex: 1;
+    max-width: 45%;
+    padding: 0.75rem 0;
+    border-radius: 10px;
+}
+
+.container form .buttons .cancel {
+    background: none;
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+
+.container form .buttons .create {
+    background: var(--green);
+    color: white;
+}
