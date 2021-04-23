@@ -1,19 +1,26 @@
 import React from 'react'
 import Header from '../../components/Header'
 import Topic from '../../components/Topic'
-import TaskProvider from '../../contexts/TaskContext';
+import { useTasks } from '../../contexts/TaskContext';
 import './index.css';
 
+type topic =  "Pendente" | "Em Andamento" | "Finalizado" | "Cancelado";
+
 export default function Dashboard() {
+    const { filter, hasFilter } = useTasks();
+    const defaultTopics: Array<topic> = ["Pendente" ,"Em Andamento" ,"Finalizado" ,"Cancelado"]
+    
     return (
-        <TaskProvider>
+        <>
             <Header/>
             <main className="content">
-                <Topic type="Pendente"/>
-                <Topic type="Em Andamento"/>
-                <Topic type="Finalizado"/>
-                <Topic type="Cancelado"/>
+                {
+                    hasFilter && (filter.status?.length ?? 0) ?
+                        filter.status!.map((topic: topic) => <Topic key={topic} type={topic}/>)
+                            :
+                        defaultTopics.map((topic: topic) => <Topic key={topic} type={topic}/>)
+                }
             </main>
-        </TaskProvider>
+        </>
     )
 }
