@@ -10,6 +10,7 @@ interface AuthContextData{
     user: firebase.User | null;
     email: firebase.UserInfo | null;
     displayName: string | null;
+    setDisplayName: React.Dispatch<any>;
     authenticated: boolean;
     signup: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
     login: (email: string, password: string ) => Promise<firebase.auth.UserCredential>;
@@ -55,6 +56,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         user,
         email,
         displayName,
+        setDisplayName,
         authenticated: user !== null,
         signup,
         login,
