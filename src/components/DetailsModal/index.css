@@ -1,0 +1,120 @@
+.overlay {
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 550px;
+    min-width: 600px;
+    width: 40%;
+    height: 50%;
+    padding: 1rem 2rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.container .head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .head .left-side{
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.container .head img {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.container .separator {
+    width: 0.25rem;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--dark-blue)
+}
+
+.container .title {
+    padding-left: 1rem;
+    font-size: 2rem;
+}
+
+.container .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .details label {
+    font-size: 1.5rem;
+}
+.container .details .description {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .details .description textarea{
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    outline: 0;
+    background: rgba(196, 196, 196, 0.2);
+    height: 4rem;
+    resize: none;
+    border-radius: 10px;
+}
+
+.container .details .options {
+    display: flex;
+    min-height: 6rem;
+    justify-content: space-between;
+}
+
+.container .details .options .status-container,
+.container .details .options .members-container{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 4rem;
+}
+
+.container .details .options .status-container .change {
+    color: var(--dark-blue);
+    cursor: pointer;
+}
+
+.container .details .history {
+    height: 100%;
+    padding: 2rem 0rem;
+}
+
+.container .details .history li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.container .details .history .left-side {
+    display: flex;
+    align-items: center;
+}
+
+.container .details .history .left-side .circle {
+    background: #c4c4c4;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
