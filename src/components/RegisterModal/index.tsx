@@ -20,7 +20,6 @@ export default function RegisterModal() {
 
     function handleSelectionOnwer(e: React.ChangeEvent<HTMLSelectElement>){
         let selected = e.target.value;
-        console.log(users.filter((user: User) => user.id === selected))
         setOnwer(
             users.filter((user: User) => user.id === selected)[0]
         );

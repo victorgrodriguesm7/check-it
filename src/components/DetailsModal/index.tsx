@@ -38,8 +38,6 @@ export default function DetailsModal({ task }: DetailsModalProps) {
     }
 
     async function handleNewStatus(){
-        console.log(newStatus);
-        console.log("Atualizando")
         if (newStatus !== task.status){
             await firebase.firestore().collection("Tasks").doc(task.id).update({
                 status: newStatus,
