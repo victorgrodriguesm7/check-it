@@ -3,6 +3,7 @@ import { useTasks } from '../../contexts/TaskContext';
 import app from '../../services/firebase';
 import firebase from 'firebase';
 import './index.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface User {
     id: string;
@@ -11,6 +12,7 @@ interface User {
 
 export default function RegisterModal() {
     const possibleStatus = ["Pendente" ,"Em Andamento" ,"Finalizado" ,"Cancelado"];
+    const { displayName } = useAuth();
     const { users, closeModal } = useTasks();
     const [ title, setTitle] = useState<string>();
     const [ description, setDescription] = useState<string>();
@@ -36,12 +38,12 @@ export default function RegisterModal() {
                 onwer,
                 history: [
                     {
-                        action: "Criou essa Tarefa",
+                        action: `${displayName} Criou essa Tarefa`,
                         date: firebase.firestore.Timestamp.fromDate(new Date()),
                         ...onwer
                     },
                     {
-                        action: `Definiu essa Tarefa como ${status}`,
+                        action: `${displayName} Definiu essa Tarefa como ${status}`,
                         date: firebase.firestore.Timestamp.fromDate(new Date()),
                         ...onwer
                     }
