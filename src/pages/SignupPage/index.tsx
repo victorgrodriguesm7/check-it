@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
+import LeftPanel from '../../components/LeftPanel';
 import { useAuth } from '../../contexts/AuthContext';
 import app from '../../services/firebase';
+
+import './index.css';
 
 export default function SignUpPage() {
     const { signup } = useAuth();
@@ -21,7 +24,7 @@ export default function SignUpPage() {
         }
 
         if (password.length < 8){
-            return setError("Senha precisa ter no minimo 8 caracteres");
+            return setError("A Senha precisa ter no minimo 8 caracteres");
         }
 
         setLoading(true);
@@ -39,35 +42,49 @@ export default function SignUpPage() {
 
             history.push('/login');  
         } catch (error) {
-            setError("Ocorreu um Erro");
+            if (error.code === "auth/email-already-in-use"){
+                setError("Email já foi cadastrado")
+            } else {
+                setError("Ocorreu um Erro");
+            }
+            
             setLoading(false);
         }
 
     }
 
     return (
-        <div>
+        <div className="signup-page">
+            <LeftPanel/>
             <div className="container">
-                <h1 className="title">Cadastro</h1>
-                <form onSubmit={handleSignup}>
+                <div className="title">
+                    <h1> Crie sua conta, é grátis! </h1>
+                </div>
+                <form onSubmit={handleSignup} className="signup-form">
                     { error && <p className="error">{error}</p>}
-                    <input 
-                        type="text" 
-                        placeholder="Nome: "
-                        onChange={(e) => setName(e.target.value)}/>
-                    <input 
-                        type="email" 
-                        placeholder="E-Mail: "
-                        onChange={(e) => setEmail(e.target.value)}/>
-                    <input 
-                        type="password" 
-                        placeholder="Senha: "
-                        onChange={(e) => setPassword(e.target.value)}/>
+                    <label>
+                        Nome:
+                        <input 
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}/>
+                    </label>
+                    <label>
+                        E-Mail:
+                        <input 
+                            type="email" 
+                            onChange={(e) => setEmail(e.target.value)}/>
+                    </label>
+                    <label>
+                        Senha:
+                        <input 
+                            type="password" 
+                            onChange={(e) => setPassword(e.target.value)}/>
+                    </label>
                     <button disabled={loading}>
                         Cadastra-se
                     </button>
+                    <p className="redirect">Já tem uma conta? <Link to="/login">Faça Login</Link></p>
                 </form>
-                <p>Já tem uma conta? <Link to="/login">Faça Login</Link></p>
             </div>
         </div>
     )
