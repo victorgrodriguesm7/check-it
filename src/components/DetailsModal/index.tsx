@@ -29,12 +29,43 @@ interface DetailsModalProps {
 
 export default function DetailsModal({ task }: DetailsModalProps) {
     const possibleStatus = ["Pendente" ,"Em Andamento" ,"Finalizado" ,"Cancelado"];
-    const { closeModal } = useTasks();
+    const { closeModal, users } = useTasks();
     const { user } = useAuth();
     const [ newStatus, setNewStatus] = useState(task.status);
-    
-    function handleSelection(e: React.ChangeEvent<HTMLSelectElement>){
+    const [ newOnwer, setNewOnwer ] = useState<User>(task.onwer);
+
+    function handleStatusSelection(e: React.ChangeEvent<HTMLSelectElement>){
         setNewStatus(e.target.value);
+    }
+
+    function handleOnwerSelection(e: React.ChangeEvent<HTMLSelectElement>){
+        let id = e.target.value;
+        
+        let [ newOnwer ] = users.filter((user: User) => user.id === id);
+        
+        setNewOnwer(
+            newOnwer
+        );
+    }
+
+    async function handleNewOnwer(){
+        if (newOnwer !== task.onwer){
+            console.log("Carregando novo Dono");
+            await firebase.firestore().collection("Tasks").doc(task.id).update({
+                onwer: newOnwer,
+                history: [
+                    ...task.history,
+                    {
+                        id: user!.uid,
+                        name: user!.displayName,
+                        action: `${user!.displayName} definiu ${newOnwer.name} como responsável`,
+                        date: firebase.firestore.Timestamp.fromDate(new Date())
+                    }
+                ]
+            });
+
+            closeModal();
+        }
     }
 
     async function handleNewStatus(){
@@ -56,6 +87,8 @@ export default function DetailsModal({ task }: DetailsModalProps) {
         }
     }
 
+    
+
     return (
         <div className="overlay">
             <div className="container">
@@ -74,7 +107,7 @@ export default function DetailsModal({ task }: DetailsModalProps) {
                     <div className="options">
                         <div className="status-container">
                             <label htmlFor="status">Status</label>
-                            <select id="status" onChange={handleSelection}>
+                            <select id="status" onChange={handleStatusSelection}>
                                 {
                                     possibleStatus.map((status) => <option key={status} selected={status === task.status}> { status } </option>)
                                 }
@@ -82,10 +115,15 @@ export default function DetailsModal({ task }: DetailsModalProps) {
                             <p className="change" onClick={(e) => handleNewStatus()}>Alterar Status</p>
                         </div>
                         <div className="members-container">
-                            <label htmlFor="members">Dono</label>
-                            <select id="members">
-                                <option key={task.onwer.id}> { task.onwer.name } </option>
+                            <label htmlFor="members">Responsável</label>
+                            <select id="members" onChange={handleOnwerSelection}>
+                                <option key={task.onwer.id} value={task.onwer.id} selected> { task.onwer.name } </option>
+                                {
+                                    users.filter((user: User) => user.id !== task.onwer.id)
+                                        .map((user: User) => <option key={user.id} value={user.id}> { user.name } </option>)
+                                }
                             </select>
+                            <p className="change" onClick={(e) => handleNewOnwer()}>Alterar responsável</p> 
                         </div>
                     </div>
                     <ul className="history">
