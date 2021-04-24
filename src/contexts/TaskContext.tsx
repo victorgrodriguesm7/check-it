@@ -131,6 +131,7 @@ export default function TaskProvider({ children }: TaskProviderProps) {
     }, [loadTasks, loadUsers]);
 
     function closeModal(){
+        loadTasks();
         setIsModalOpen(false);
         setModal(null);
     }
