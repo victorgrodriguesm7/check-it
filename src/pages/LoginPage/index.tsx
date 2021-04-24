@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
+import LeftPanel from '../../components/LeftPanel';
 import { useAuth } from '../../contexts/AuthContext';
 import { auth } from '../../services/firebase';
+
+import './index.css';
 
 export default function LoginPage() {
     const { login, setDisplayName } = useAuth();
@@ -44,26 +47,32 @@ export default function LoginPage() {
 
     }
     return (
-        <div>
+        <div className="login-page">
+            <LeftPanel/>
             <div className="container">
-                <h1 className="title">
-                    Login
-                </h1>
-                <form onSubmit={handleSubmit}>
+                <div className="title">
+                    <h1> Bem-vindo </h1>
+                    <h2> Entre em sua Conta</h2>
+                </div>
+                <form onSubmit={handleSubmit} className="login-form">
                     { error && <p className="error">{error}</p>}
-                    <input 
-                        type="email" 
-                        placeholder="E-Mail: "
-                        onChange={(e) => setEmail(e.target.value)}/>
-                    <input 
-                        type="password" 
-                        placeholder="Senha: "
-                        onChange={(e) => setPassword(e.target.value)}/>
+                    <label>
+                        E-Mail:
+                        <input 
+                            type="email" 
+                            onChange={(e) => setEmail(e.target.value)}/>
+                    </label>
+                    <label>
+                        Senha:
+                        <input 
+                            type="password" 
+                            onChange={(e) => setPassword(e.target.value)}/>
+                    </label>
                     <button disabled={loading}>
-                        Logar
+                        Entrar
                     </button>
+                    <p className="redirect">Não possui uma conta? <Link to="/signup">Cadastre-se</Link></p>
                 </form>
-                <p>Ainda não tem uma conta? <Link to="/signup">Cadastre-se</Link></p>
             </div>
         </div>
     )
