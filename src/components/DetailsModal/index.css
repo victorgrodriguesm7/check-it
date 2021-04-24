@@ -89,7 +89,12 @@
     height: 4rem;
 }
 
-.container .details .options .status-container .change {
+.container .details .options .members-container .change {
+    align-self: flex-end;
+}
+
+.container .details .options .status-container .change,
+.container .details .options .members-container .change {
     color: var(--dark-blue);
     cursor: pointer;
 }
