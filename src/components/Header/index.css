@@ -54,7 +54,8 @@
 }
 
 .header .bottom-header .add-task,
-.header .bottom-header .filter-tasks {
+.header .bottom-header .filter-tasks,
+.header .bottom-header .return .return-button {
     z-index: 1;
     display: flex;
     align-items: center;
@@ -83,19 +84,17 @@
 }
 
 .header .bottom-header .filter-tasks .box {
-    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
     background: rgba(249, 249, 249, 0.9);
 }
 
 .header .bottom-header .filter-tasks .box img {
-    transition: transform 0.3s;
+    height: 75%;
+    padding: 0.4rem;
 }
-
-.header .bottom-header .filter-tasks.active .box img {
-    transform: rotate(-180deg);
-}
-
 .header .bottom-header .filter {
     position: relative;
     display: flex;
@@ -107,112 +106,13 @@
     font-size: 1rem;
 }
 
-/* Filtrar por Animação */
-
-.filter-options .by-status .status-container {
-    display: grid;
-    padding: 0.5rem 0;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    align-items: center;
-    justify-items: center;
+.header .bottom-header .return .return-button {
+    background: rgba(249, 249, 249, 0.9);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #8257E5;
+    transition: background 0.2s;
 }
 
-.filter-options .by-status .status-container .status {
-    display: flex;
-    justify-content: center;
-    padding: 2px 4px;
-    font-size: 0.75rem;
-    color: white;
-    width: 100%;
-    transition: all 0.2s;
-}
-
-.filter-options .by-status .status-container .status:not(.active):hover {
-    filter: brightness(90%);
-}
-
-/* Pendente */
-.filter-options .by-status .status-container .status:nth-child(1){
-    background: var(--dark-blue);
-    border: 1px solid var(--border-blue);
-    border-radius: 5px;
-}
-
-.filter-options .by-status .status-container .status.active:nth-child(1) {
-    background: var(--light-blue);
-    color: var(--dark-blue); 
-}
-
-/* Em Andamento */
-.filter-options .by-status .status-container .status:nth-child(2){
-    background: var(--orange);
-    border: 1px solid var(--border-orange);
-    border-radius: 5px;
-}
-
-.filter-options .by-status .status-container .status.active:nth-child(2){
-    background: var(--light-orange);
-    color: var(--orange);
-}
-
-/* Finalizado */
-.filter-options .by-status .status-container .status:nth-child(3){
-    background: var(--green);
-    border: 1px solid var(--border-green);
-    border-radius: 5px;
-}
-
-.filter-options .by-status .status-container .status.active:nth-child(3){
-    background: var(--light-green);
-    color: var(--green);
-}
-
-/* Cancelado */
-.filter-options .by-status .status-container .status:nth-child(4){
-    background: var(--red);
-    border: 1px solid var(--border-red);
-    border-radius: 5px;
-}
-
-.filter-options .by-status .status-container .status.active:nth-child(4){
-    background: var(--light-red);
-    color: var(--red);
-}
-
-/* Select */
-
-/* Limpar Filtro */
-.filter-options .clean {
-    display: flex;
-    margin: 0.25rem 0;
-    padding: 0 0.10rem;
-    justify-content: center;
-    background: var(--red);
-    border-radius: 10px;
-    color: white;
-}
-
-/*    Animação do Filtrar */
-.header .bottom-header .filter-tasks +
-.filter-options {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    position: absolute;
-    height: 10rem;
-    padding: 0.25rem 0.25rem;
-    top: 0;
-    z-index: -1;
-    border-radius: 0px 0px 10px 10px;
-    transform: translateY(-5.5rem);
-    transition: all 0.025s;
-}
-
-.header .bottom-header .filter-tasks.active +
-.filter-options{
-    z-index: 1;
-    display: flex;
-    transform: translateY(3rem);
-    background: white;
+.header .bottom-header .return .return-button:hover {
+    background: rgba(249, 249, 249, 0.8);
 }
