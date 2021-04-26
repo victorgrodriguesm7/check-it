@@ -1,0 +1,37 @@
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+.results .ais-Hits ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.results .ais-Hits li {
+    display: flex;
+}
+
+.results .ais-Pagination ul{
+    display: flex;
+}
+
+.results .ais-Pagination ul li{
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem;
+}
+
+.results .ais-Pagination ul li .ais-Pagination-link{
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.2);
+}
+
+.results .ais-Pagination ul .ais-Pagination-item--selected {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.results .ais-Pagination ul .ais-Pagination-item--selected .ais-Pagination-link {
+    color: white;
+}
