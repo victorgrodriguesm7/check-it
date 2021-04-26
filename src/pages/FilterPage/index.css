@@ -1,0 +1,133 @@
+.content {
+    flex: 2;
+}
+
+.content .ais-SearchBox {
+    margin-top: 3rem;
+    width: 100%;
+}
+.content .ais-SearchBox-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.content .ais-SearchBox-input {
+    background: rgba(196, 196, 196, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 0px;
+    border-radius: 10px 0 0 10px;
+    padding: 0.5rem 1rem;
+    width: 45%;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.content .ais-SearchBox-input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-right: 0px;
+    outline: 0;
+}
+
+.content .ais-SearchBox-input:focus + button  {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-left: 0px;
+    outline: 0;
+}
+
+.content .ais-SearchBox-submit {
+    background: rgba(196, 196, 196, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 0px;
+    padding: 0.5rem 1rem;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.content .ais-SearchBox-submitIcon {
+    display: flex;
+    align-items: center;
+    fill: rgba(0, 0, 0, 0.2);
+    height: 1rem;
+    width: 1rem;
+}
+
+.content .ais-SearchBox-reset {
+    margin-left: 0.25rem;
+    background-color: var(--red);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.content .ais-SearchBox-reset svg {
+    fill: white;
+    height: 1rem;
+    width: 1rem;
+}
+.content .status,
+.content .onwer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .status h2,
+.content .onwer h2{
+    font-size: 1.25rem;
+    padding-right: 1rem;
+}
+
+.content .status .ais-RefinementList-list,
+.content .onwer .ais-RefinementList-list  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.content .status .ais-RefinementList-list li {
+    display: flex;
+    color: white;
+    padding: 0.25rem;
+}
+
+/* Pendente */
+.content .status .ais-RefinementList-list li:nth-child(2){
+    background: var(--dark-blue);
+    border: 1px solid var(--border-blue);
+    border-radius: 5px;
+}
+
+/* Em Andamento */
+.content .status .ais-RefinementList-list li:nth-child(1){
+    background: var(--orange);
+    border: 1px solid var(--border-orange);
+    border-radius: 5px;
+}
+
+/* Finalizado */
+.content .status .ais-RefinementList-list li:nth-child(3){
+    background: var(--green);
+    border: 1px solid var(--border-green);
+    border-radius: 5px;
+}
+
+/* Cancelado */
+.content .status .ais-RefinementList-list li:nth-child(4){
+    background: var(--red);
+    border: 1px solid var(--border-red);
+    border-radius: 5px;
+}
+
+.content .onwer .ais-RefinementList-list li {
+    display: flex;
+    background: rgba(196, 196, 196, 0.2);
+    color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 0 1rem;
+    padding: 0.25rem;
+}
+
+.content .onwer .ais-RefinementList-list li span {
+    padding-left: 0.25rem;
+}
