@@ -3,7 +3,6 @@ import firebase from 'firebase';
 import app from '../services/firebase';
 import RegisterModal from '../components/RegisterModal';
 import DetailsModal from '../components/DetailsModal';
-import algoliasearch from 'algoliasearch';
 
 interface TaskProviderProps {
     children: React.ReactNode;
