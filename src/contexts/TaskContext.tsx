@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import app from '../services/firebase';
 import RegisterModal from '../components/RegisterModal';
 import DetailsModal from '../components/DetailsModal';
+import algoliasearch from 'algoliasearch';
 
 interface TaskProviderProps {
     children: React.ReactNode;
@@ -11,19 +12,9 @@ interface TaskProviderProps {
 interface TaskContextData {
     tasks: Array<Task>;
     users: Array<User>;
-    filter: Filter;
-    hasFilter: boolean;
-    deleteFilter: boolean;
-    changeFilter: (filter: Filter) => void;
-    clearFilter: (value: boolean) => void;
     openRegisterModal: () => void;
     closeModal: () => void;
     openDetailsModal: (task: Task) => void;
-}
-
-interface Filter {
-    status: Array<"Pendente" | "Em Andamento" | "Finalizado" | "Cancelado"> | null;
-    onwer: User | null;
 }
 
 interface User {
@@ -54,55 +45,39 @@ export function useTasks(){
     return useContext(TaskContext);
 }
 
-export default function TaskProvider({ children }: TaskProviderProps) {
+
+
+
+export default function TaskProvider({ children }: TaskProviderProps) {    
     const [ tasks, setTasks ] = useState(new Array<Task>());
     const [ users, setUsers ] = useState(new Array<User>());
-    const [ filter, setFilter ] = useState({} as Filter);
-    const [ hasFilter, setHasFilter] = useState(false);
-    const [ deleteFilter, setDeleteFilter ] = useState(false);
     const [ loading, setLoading ] = useState(true);
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ modal, setModal] = useState<JSX.Element | null>(null);
     const firestore = app.firestore();
 
-    function clearFilter(value: boolean){
-        if (value){
-            setFilter({} as Filter);
-            setHasFilter(false);
-        }
-
-        setDeleteFilter(value);
-    }
-    
-    function changeFilter({ onwer, status} : Filter){
-        if (status !== null){
-            setFilter({...filter, status});
-        }
-        
-        if(onwer !== null){
-            setFilter({ ...filter, onwer});
-        }
-
-        setHasFilter(true);
-    }
-
     const loadTasks = useCallback(
         async () => {
-            let collection = await firestore.collection('Tasks').get();
-
+            let collection = await firestore.collection('Tasks').limit(20).get();
             setTasks(
                 collection.docs.map((doc: firebase.firestore.DocumentData) => {
                     let data = doc.data();
                     return {
                         id: doc.id,
-                        ...data
+                        status: data.status,
+                        title: data.title,
+                        description: data.description,
+                        onwer: {
+                            id: data.onwer.onwer_id,
+                            name:  data.onwer.onwer_name
+                        },
+                        history: data.history
                     } as Task;
                 })
             );
         },
         [setTasks, firestore],
     )
-
     const loadUsers = useCallback(
         async () => {
             let collection = await firestore.collection("Users").get();
@@ -148,11 +123,6 @@ export default function TaskProvider({ children }: TaskProviderProps) {
     let value = {
         tasks,
         users,
-        filter,
-        hasFilter,
-        deleteFilter,
-        changeFilter,
-        clearFilter,
         openRegisterModal,
         closeModal,
         openDetailsModal

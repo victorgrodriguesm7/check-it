@@ -11,18 +11,8 @@ interface TopicProps {
 
 export default function Topic({ type }: TopicProps) {
     let containerRef = useRef<HTMLDivElement>(null);
-    let { tasks, filter, hasFilter} = useTasks();
+    let { tasks } = useTasks();
 
-    if (hasFilter){
-        tasks = tasks.filter((task) => {
-            return (
-                (task.status === type)  // Filter by Status
-                    && 
-                (filter.onwer?.id ?? false ) // Verify if Filter have Onwer
-                    ? (task.onwer.id === filter.onwer!.id) : true // Filter by Onwer
-            )
-        });
-    }
     tasks = tasks.filter((task) => task.status === type);
 
     let color = {
