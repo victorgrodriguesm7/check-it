@@ -136,7 +136,7 @@ export default function DetailsModal({ task }: DetailsModalProps) {
                                     </div>
                                     <div className="date">
                                         {
-                                            (new Date((event?.date.seconds ?? 0) * 1000)).toLocaleDateString()
+                                            (new Date((event?.date?.seconds ?? 1619290785) * 1000)).toLocaleDateString()
                                         }
                                     </div>
                                 </li>
