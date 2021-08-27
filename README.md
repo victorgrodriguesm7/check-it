@@ -4,7 +4,8 @@
     <img alt="Project top programing language" src="https://img.shields.io/github/languages/top/victorgrodriguesm7/check-it-ts">
     <img alt="GitHub license" src="https://img.shields.io/github/license/victorgrodriguesm7/check-it-ts">
 </p>
-# Check It
+
+# Check it
 
 Site de Atividades escrito em React e Typescript com um foco em uma boa usabilidade e em suportar uma alta carga de dados com uma busca muito perfomática utilizando Algolia.
 
