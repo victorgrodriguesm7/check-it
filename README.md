@@ -21,7 +21,7 @@ Esse projeto foi desenvolvido usando as seguintes tecnologias:
 - [Vs Code](https://code.visualstudio.com/)
 
 ## :camera: Imagens / Gifs
-<p aling="center" style="text-align:center">
+<p aling="center" style="text-align:center" width="100%">
     <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/login_rvy0yw.jpg" height="250">
     <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/register_vtpcd1.jpg" height="250">
     <br/>
