@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+<p align="center">
+    <img alt="Last commit on GitHub" src="https://img.shields.io/github/last-commit/victorgrodriguesm7/check-it-ts">
+    <img alt="Made by Victor" src="https://img.shields.io/badge/made%20by-Victor%20G.%20Rodrigues-%20">
+    <img alt="Project top programing language" src="https://img.shields.io/github/languages/top/victorgrodriguesm7/check-it-ts">
+    <img alt="GitHub license" src="https://img.shields.io/github/license/victorgrodriguesm7/check-it-ts">
+</p>
+# Check It
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Site de Atividades escrito em React e Typescript com um foco em uma boa usabilidade e em suportar uma alta carga de dados com uma busca muito perfomática utilizando Algolia.
 
-## Available Scripts
+## :rocket: Feito com:
 
-In the project directory, you can run:
+Esse projeto foi desenvolvido usando as seguintes tecnologias:
 
-### `npm start`
+- [React](https://pt-br.reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [React Router](https://www.npmjs.com/package/react-switch)
+- [Firebase](https://firebase.google.com/?hl=pt)
+- [Algolia](https://www.algolia.com/)
+- [Vs Code](https://code.visualstudio.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## :camera: Imagens / Gifs
+<p aling="center" style="text-align:center">
+    <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/login_rvy0yw.jpg" height="250">
+    <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/register_vtpcd1.jpg" height="250">
+    <br/>
+    <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/register-modal_aykpun.jpg" height="250">
+    <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/dashboard_f4fskd.jpg" height="250">
+    <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105575/check-it/update-modal_kdghww.jpg" height="250">
+    <br/>
+    <img src="https://res.cloudinary.com/dozoyzosn/image/upload/v1630105576/check-it/search-page_dyd0xa.png" height="250">
+</p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+### :information_source: Como executar
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Requisitos
 
-### `npm run build`
+Para Executar a aplicação você precisará ter:
+* [Git](https://git-scm.com)
+* [NodeJS](https://www.npmjs.com/)
+* [Firebase](https://firebase.google.com/?hl=pt)
+* [Algolia](https://www.algolia.com/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Primeiro clone o repositório e instale as depedências
+```bash
+# Clone o repositório
+git clone https://github.com/victorgrodriguesm7/check-it-ts.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Vá até o diretório do projeto
+cd check-it-ts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Instale as depedências necessárias.
+npm install
+```
+Agora você precisará criar um arquivo na raiz do projeto chamado de .env e nele irá colocar suas chaves da seguinte forma:
+```env
+REACT_APP_API_KEY=SUA_API_KEY
+REACT_APP_PRIVATE_KEY=SUA_API_KEY_PRIVADA
+```
 
-### `npm run eject`
+Após configurar o arquivo .env execute o projeto utilizando:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Todo:
+- [ ] Importação automática dos dados para Algolia
+## :page_facing_up: Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Esse projeto está sobre a Licença do MIT. Veja a [LICENÇA](https://github.com/victorgrodriguesm7/check-it-ts/blob/master/LICENSE) para mais informações.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## :mailbox_with_mail: Entre em contato!
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a href="mailto:victorgrodriguesm7@gmail.com" target="_blank" >
+  <img alt="Email - Victor Gabriel" src="https://img.shields.io/badge/Email--%23F8952D?style=social&logo=gmail">
+</a>
+<a href="https://www.linkedin.com/in/victor-g-rodrigues-662071203/">
+    <img src="https://img.shields.io/badge/Linkedin--%23F8952D?style=social&logo=linkedin">
+</a>
